@@ -68,21 +68,27 @@ $(MPC_).tar.gz:
 
 gmp-%: gmp-%.tar.bz2
 	$(TAR) jxf $<
+	touch $@
 
 mpfr-%: mpfr-%.tar.bz2
 	$(TAR) jxf $<
+	touch $@
 
 mpc-%: mpc-%.tar.gz
 	$(TAR) zxf $<
+	touch $@
 
 binutils-%: binutils-%.tar.bz2
 	$(TAR) jxf $<
+	touch $@
 
 gcc-%: gcc-%.tar.bz2
 	$(TAR) jxf $<
+	touch $@
 
 newlib-%: newlib-%.tar.gz
 	$(TAR) zxf $<
+	touch $@
 
 .SECONDARY: $(GCC_).stamp $(GCC_).core.stamp $(BINUTILS_).stamp \
 	$(NEWLIB_).stamp $(GMP_).stamp $(MPFR_).stamp $(MPC_).stamp
