@@ -26,7 +26,8 @@ XPREFIX = $(PREFIX)/$(TARGET)/$(GCC_VERSION)
 
 PATH = $(XPREFIX)/bin:/usr/local/bin:/usr/bin:/bin
 
-CURL = curl
+FETCH = curl -OL
+# FETCH = wget
 TAR = tar
 
 GCC_ = gcc-$(GCC_VERSION)
@@ -44,25 +45,25 @@ all:
 endif
 
 $(GCC_).tar.bz2:
-	# $(CURL) -O ftp://gcc.gnu.org/pub/gcc/releases/$(GCC_)/$@
-	$(CURL) -L -O http://ftpmirror.gnu.org/gcc/$(GCC_)/$@
+	# $(FETCH) ftp://gcc.gnu.org/pub/gcc/releases/$(GCC_)/$@
+	$(FETCH) http://ftpmirror.gnu.org/gcc/$(GCC_)/$@
 
 $(BINUTILS_).tar.bz2:
-	# $(CURL) -O ftp://ftp.gnu.org/gnu/binutils/$@
-	$(CURL) -L -O http://ftpmirror.gnu.org/binutils/$@
+	# $(FETCH) ftp://ftp.gnu.org/gnu/binutils/$@
+	$(FETCH) http://ftpmirror.gnu.org/binutils/$@
 
 $(NEWLIB_).tar.gz:
-	$(CURL) -O ftp://sourceware.org/pub/newlib/$@
+	$(FETCH) ftp://sourceware.org/pub/newlib/$@
 
 $(GMP_).tar.bz2:
-	# $(CURL) -O ftp://ftp.gmplib.org/pub/$(GMP_)/$@
-	$(CURL) -L -O http://ftpmirror.gnu.org/gmp/$@
+	# $(FETCH) ftp://ftp.gmplib.org/pub/$(GMP_)/$@
+	$(FETCH) http://ftpmirror.gnu.org/gmp/$@
 
 $(MPFR_).tar.bz2:
-	$(CURL) -O http://www.mpfr.org/$(MPFR_)/$@
+	$(FETCH) http://www.mpfr.org/$(MPFR_)/$@
 
 $(MPC_).tar.gz:
-	$(CURL) -O http://www.multiprecision.org/mpc/download/$@
+	$(FETCH) http://www.multiprecision.org/mpc/download/$@
 
 .SECONDARY: $(GCC_) $(BINUTILS_) $(NEWLIB_) $(GMP_) $(MPFR_) $(MPC_)
 
