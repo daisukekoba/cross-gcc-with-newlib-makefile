@@ -14,12 +14,12 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 # ----------------------------------------------------------------------------
 
-GCC_VERSION = 4.7.2
-BINUTILS_VERSION = 2.22
-NEWLIB_VERSION = 1.20.0
-GMP_VERSION = 5.0.5
-MPFR_VERSION = 3.1.1
-MPC_VERSION = 1.0.1
+GCC_VERSION = 5.2.0
+BINUTILS_VERSION = 2.25.1
+NEWLIB_VERSION = 2.2.0
+GMP_VERSION = 6.0.0
+MPFR_VERSION = 3.1.3
+MPC_VERSION = 1.0.3
 
 PREFIX = /usr/local
 XPREFIX = $(PREFIX)/$(TARGET)/$(GCC_VERSION)
@@ -55,7 +55,7 @@ $(BINUTILS_).tar.bz2:
 $(NEWLIB_).tar.gz:
 	$(FETCH) ftp://sourceware.org/pub/newlib/$@
 
-$(GMP_).tar.bz2:
+$(GMP_)a.tar.bz2:
 	# $(FETCH) ftp://ftp.gmplib.org/pub/$(GMP_)/$@
 	$(FETCH) http://ftpmirror.gnu.org/gmp/$@
 
@@ -67,7 +67,7 @@ $(MPC_).tar.gz:
 
 .SECONDARY: $(GCC_) $(BINUTILS_) $(NEWLIB_) $(GMP_) $(MPFR_) $(MPC_)
 
-gmp-%: gmp-%.tar.bz2
+gmp-%: gmp-%a.tar.bz2
 	$(TAR) jxf $<
 	touch $@
 
